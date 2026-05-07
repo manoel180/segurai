@@ -11,7 +11,7 @@ import csv
 from datetime import datetime
 
 # SUA CHAVE FUNCIONAL AQUI (a que deu 3072)
-API_KEY = "AIzaSyCIUS20MA70BTxPSYpFes_afIpYF9xl9nc"
+API_KEY = "COLE SUA CHAVE AQUI"
 
 st.set_page_config(page_title="SegurAI Assistente", page_icon="🛡️", layout="centered")
 
