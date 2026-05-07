@@ -1,0 +1,73 @@
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#0B2D62',
+        'primary-container': '#E6F0FF',
+        'on-primary': '#FFFFFF',
+        'text-on-primary': '#FFFFFF',
+        secondary: '#00915A',
+        'secondary-container': '#0B2D62',
+        'on-secondary': '#FFFFFF',
+        'text-on-secondary': '#FFFFFF',
+        tertiary: '#808A93',
+        surface: '#FFFFFF',
+        'surface-background': '#FAFAFA',
+        'surface-container': '#F4F6F9',
+        'surface-container-low': '#F8F9FA',
+        'surface-lowest': '#FFFFFF',
+        'on-surface': '#1A202C',
+        'on-surface-variant': '#4A5568',
+        outline: '#E2E8F0',
+        'outline-variant': '#CBD5E1',
+        'border-subtle': '#EDF2F7',
+        'surface-chat-ai': '#F4F6F9',
+        'surface-chat-user': '#0B2D62',
+        'status-alert': '#E53E3E',
+      },
+      borderRadius: {
+        DEFAULT: '0px',
+        lg: '2px',
+        xl: '4px',
+      },
+      spacing: {
+        xs: '0.75rem',
+        'container-max': '1400px',
+        sm: '1.5rem',
+        xl: '6rem',
+        unit: '4px',
+        'section-gap': '10rem',
+        md: '2.5rem',
+        lg: '4rem',
+        gutter: '32px',
+      },
+      fontFamily: {
+        subheadline: ['Playfair Display', 'serif'],
+        'label-pill': ['Lato', 'sans-serif'],
+        'headline-section': ['Playfair Display', 'serif'],
+        'body-main': ['Lato', 'sans-serif'],
+        'button-text': ['Lato', 'sans-serif'],
+        'display-hero': ['Playfair Display', 'serif'],
+        'body-small': ['Lato', 'sans-serif'],
+      },
+      fontSize: {
+        subheadline: ['24px', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '400' }],
+        'label-pill': ['12px', { lineHeight: '1.2', letterSpacing: '0.1em', fontWeight: '600', textTransform: 'uppercase' }],
+        'headline-section': ['40px', { lineHeight: '1.2', fontWeight: '500' }],
+        'body-main': ['18px', { lineHeight: '1.8', fontWeight: '300' }],
+        'button-text': ['14px', { lineHeight: '1.0', fontWeight: '600', letterSpacing: '0.05em', textTransform: 'uppercase' }],
+        'display-hero': ['64px', { lineHeight: '1.1', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'body-small': ['15px', { lineHeight: '1.7', fontWeight: '300' }],
+      },
+    },
+  },
+  plugins: [],
+}
+export default config

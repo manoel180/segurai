@@ -1,0 +1,18 @@
+Glossário de seguros:
+
+Apólice: documento contratual que formaliza o seguro.
+Segurado: pessoa física ou jurídica protegida pelo seguro.
+Seguradora: empresa responsável por assumir os riscos contratados.
+Corretora: empresa ou profissional que intermedia a contratação do seguro.
+Prêmio: valor pago pelo segurado para manter o seguro ativo.
+Franquia: valor de participação do segurado em determinados sinistros.
+Sinistro: evento coberto pelo seguro.
+Indenização: valor pago pela seguradora em caso de sinistro coberto.
+Vigência: período de validade da apólice.
+Endosso: alteração formal realizada na apólice.
+Cobertura: proteção contratada contra determinado risco.
+Carência: período em que uma cobertura ainda não pode ser utilizada.
+Assistência 24h: serviço emergencial disponibilizado ao segurado conforme contrato.
+Responsabilidade civil: cobertura para danos causados a terceiros.
+Perda total: quando o bem segurado não pode ser reparado economicamente.
+Perda parcial: quando o dano pode ser reparado.

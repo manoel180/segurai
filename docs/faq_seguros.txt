@@ -1,0 +1,89 @@
+Pergunta: O que é uma apólice de seguro?
+Resposta: É o contrato entre segurado e seguradora, contendo coberturas, valores, vigência, direitos e deveres.
+
+Pergunta: O que é prêmio do seguro?
+Resposta: É o valor pago pelo segurado para manter o seguro ativo.
+
+Pergunta: O que é franquia?
+Resposta: É o valor que o segurado paga em determinados sinistros antes da indenização da seguradora.
+
+Pergunta: O que é sinistro?
+Resposta: É a ocorrência de um evento coberto pelo seguro, como acidente, roubo, furto, incêndio ou dano residencial.
+
+Pergunta: Como acionar o seguro em caso de sinistro?
+Resposta: O segurado deve comunicar a seguradora, informar o ocorrido, enviar documentos solicitados e aguardar análise.
+
+Pergunta: Quais documentos são necessários para abrir sinistro de veículo?
+Resposta: Normalmente são solicitados CNH, documento do veículo, boletim de ocorrência, fotos do dano e dados do segurado.
+
+Pergunta: O seguro cobre roubo e furto?
+Resposta: Depende da cobertura contratada na apólice. O segurado deve verificar se roubo e furto estão incluídos.
+
+Pergunta: O seguro cobre colisão?
+Resposta: Sim, se a cobertura de danos ao veículo estiver contratada na apólice.
+
+Pergunta: O seguro cobre danos a terceiros?
+Resposta: Sim, quando há cobertura de responsabilidade civil facultativa contratada.
+
+Pergunta: O que é assistência 24 horas?
+Resposta: É um serviço de apoio emergencial, como guincho, chaveiro, troca de pneu, pane seca e socorro mecânico, conforme o plano.
+
+Pergunta: Como solicitar guincho?
+Resposta: O segurado deve acionar a central de assistência 24h e informar localização, placa do veículo e tipo de ocorrência.
+
+Pergunta: O seguro residencial cobre incêndio?
+Resposta: Geralmente sim, desde que a cobertura de incêndio esteja prevista na apólice.
+
+Pergunta: O seguro residencial cobre roubo?
+Resposta: Pode cobrir, desde que a cobertura de roubo ou furto qualificado esteja contratada.
+
+Pergunta: O seguro residencial cobre danos elétricos?
+Resposta: Sim, se a cobertura de danos elétricos estiver incluída na apólice.
+
+Pergunta: O que é carência no seguro?
+Resposta: É o período inicial em que determinadas coberturas ainda não podem ser utilizadas.
+
+Pergunta: O que é vigência da apólice?
+Resposta: É o período em que o seguro está ativo e válido.
+
+Pergunta: Posso cancelar meu seguro?
+Resposta: Sim. O cancelamento pode ser solicitado à seguradora ou corretora, respeitando as regras contratuais.
+
+Pergunta: Posso alterar dados da apólice?
+Resposta: Sim. Alterações como endereço, veículo, condutor ou forma de pagamento devem ser solicitadas à seguradora.
+
+Pergunta: Como emitir segunda via do boleto?
+Resposta: O segurado deve acessar o portal da seguradora, aplicativo ou solicitar à corretora responsável.
+
+Pergunta: O atraso no pagamento cancela o seguro?
+Resposta: O atraso pode gerar suspensão ou cancelamento, conforme as regras da seguradora e condições da apólice.
+
+Pergunta: O que é endosso?
+Resposta: É uma alteração formal feita na apólice durante sua vigência.
+
+Pergunta: O que é cobertura compreensiva?
+Resposta: É uma cobertura ampla que pode incluir colisão, roubo, furto, incêndio e outros danos, conforme contratado.
+
+Pergunta: O que é perda total?
+Resposta: É quando o custo do reparo ultrapassa o percentual definido pela seguradora, geralmente próximo a 75% do valor do bem.
+
+Pergunta: O que é indenização integral?
+Resposta: É o pagamento do valor previsto na apólice em caso de perda total, roubo ou furto sem recuperação.
+
+Pergunta: O que é indenização parcial?
+Resposta: É o pagamento ou reparo referente a danos que não caracterizam perda total.
+
+Pergunta: O seguro cobre enchente?
+Resposta: Pode cobrir, se a cobertura para eventos da natureza estiver prevista na apólice.
+
+Pergunta: O seguro cobre terceiros sem boletim de ocorrência?
+Resposta: A seguradora pode solicitar documentos e análise do caso. O boletim de ocorrência pode ser necessário em algumas situações.
+
+Pergunta: O chatbot pode substituir a seguradora?
+Resposta: Não. O chatbot presta orientação inicial. A decisão final deve ser confirmada com a seguradora ou corretora.
+
+Pergunta: O chatbot pode acessar dados pessoais do segurado?
+Resposta: Nesta versão, não. O atendimento é informativo e não acessa dados pessoais sensíveis.
+
+Pergunta: Quando devo falar com atendimento humano?
+Resposta: Quando houver caso complexo, divergência na apólice, urgência, sinistro grave ou necessidade de análise personalizada.
