@@ -59,10 +59,10 @@ const config: Config = {
       },
       fontSize: {
         subheadline: ['24px', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '400' }],
-        'label-pill': ['12px', { lineHeight: '1.2', letterSpacing: '0.1em', fontWeight: '600', textTransform: 'uppercase' }],
+        'label-pill': ['12px', { lineHeight: '1.2', letterSpacing: '0.1em', fontWeight: '600' }],
         'headline-section': ['40px', { lineHeight: '1.2', fontWeight: '500' }],
         'body-main': ['18px', { lineHeight: '1.8', fontWeight: '300' }],
-        'button-text': ['14px', { lineHeight: '1.0', fontWeight: '600', letterSpacing: '0.05em', textTransform: 'uppercase' }],
+        'button-text': ['14px', { lineHeight: '1.0', fontWeight: '600', letterSpacing: '0.05em' }],
         'display-hero': ['64px', { lineHeight: '1.1', letterSpacing: '-0.01em', fontWeight: '600' }],
         'body-small': ['15px', { lineHeight: '1.7', fontWeight: '300' }],
       },
