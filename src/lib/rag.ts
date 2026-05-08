@@ -11,11 +11,11 @@ async function loadDocuments(): Promise<string[]> {
   if (cachedDocuments) return cachedDocuments;
 
   try {
-    const documentsPath = path.join(process.cwd(), "documents");
+    const documentsPath = path.join(process.cwd(), "docs");
     
     // Verifica se a pasta existe
     if (!fs.existsSync(documentsPath)) {
-      console.warn("⚠️ Pasta 'documents' não encontrada");
+      console.warn("⚠️ Pasta 'docs' não encontrada");
       return [];
     }
 
@@ -52,7 +52,7 @@ export async function queryRAG(question: string) {
   const documents = await loadDocuments();
 
   if (documents.length === 0) {
-    throw new Error("Nenhum documento encontrado na pasta 'documents'");
+    throw new Error("Nenhum documento encontrado na pasta 'docs'");
   }
 
   const model = client.getGenerativeModel({ model: "gemini-1.5-flash" });
