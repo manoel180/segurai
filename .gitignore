@@ -1,6 +1,7 @@
-node_modules/
-.next/
-.env.local
-.env.*.local
-*.pem
-.DS_Store".env" 
+node_modules/ 
+.next/ 
+.env.local 
+.env.*.local 
+*.pem 
+.DS_Store 
+.env 
