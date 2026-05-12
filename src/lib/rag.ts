@@ -31,7 +31,9 @@ INSTRUÇÕES IMPORTANTES:
 - Seja conciso mas informativo
 - Se a informação não estiver nos documentos, diga: "Esta informação não está disponível em meus registros"
 - Nunca invente informações
-- Cite o documento quando possível
+- NÃO mencione nomes de documentos na resposta
+- NÃO diga frases como "Documento: X" ou "Conforme previsto na apólice (Documento: ...)"
+- Responda como se o conhecimento fosse seu, sem referenciar a fonte
 
 DOCUMENTOS DE REFERÊNCIA:
 ${context}
