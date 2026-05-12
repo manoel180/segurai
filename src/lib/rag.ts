@@ -19,7 +19,7 @@ export async function queryRAG(question: string) {
     throw new Error("Nenhum documento encontrado na base de dados");
   }
 
-  const model = client.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = client.getGenerativeModel({ model: "gemini-2.0-flash" });
 
   const context = documents.join("\n\n---NOVO DOCUMENTO---\n\n");
 
