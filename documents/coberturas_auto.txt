@@ -1,0 +1,11 @@
+Coberturas comuns do Seguro Auto:
+
+1. Colisão: cobre danos ao veículo segurado decorrentes de acidentes, desde que prevista na apólice.
+2. Roubo e furto: cobre a subtração do veículo, conforme regras da apólice e análise da seguradora.
+3. Incêndio: cobre danos causados por incêndio acidental ou eventos previstos contratualmente.
+4. Danos a terceiros: cobre prejuízos materiais ou corporais causados a terceiros, respeitando o limite contratado.
+5. Assistência 24 horas: pode incluir guincho, chaveiro, troca de pneus, pane seca, socorro mecânico e transporte emergencial.
+6. Perda total: ocorre quando o custo de reparo ultrapassa o percentual definido pela seguradora em relação ao valor do veículo.
+7. Perda parcial: ocorre quando o veículo pode ser reparado e o custo não caracteriza perda total.
+
+Observação: as coberturas dependem da contratação realizada e devem ser confirmadas na apólice.
