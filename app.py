@@ -256,10 +256,18 @@ Pergunta do segurado: {question}
 
 Resposta:"""
 
-QA_PROMPT = PromptTemplate(
-    input_variables=["context", "chat_history", "question"],
-    template=SYSTEM_PROMPT
-)
+guard_prompttemplate = globals().get("PromptTemplate", None)
+problems = missing_modules.copy()
+if not callable(guard_prompttemplate):
+    problems.append("PromptTemplate is unavailable or incompatible in the installed `langchain` package.")
+
+if callable(guard_prompttemplate):
+    QA_PROMPT = PromptTemplate(
+        input_variables=["context", "chat_history", "question"],
+        template=SYSTEM_PROMPT
+    )
+else:
+    QA_PROMPT = None
 
 # --- CARREGAMENTO DO RAG ---
 @st.cache_resource
@@ -268,7 +276,7 @@ def carregar_rag():
         raise RuntimeError("Defina GOOGLE_API_KEY, GEMINI_API_KEY ou API_KEY no .env antes de iniciar o app.")
 
     loader = DirectoryLoader(
-        "docs",
+        str(DOCUMENTS_DIR),
         glob="*.txt",
         loader_cls=TextLoader,
         loader_kwargs={"encoding": "utf-8", "autodetect_encoding": True}
@@ -280,6 +288,10 @@ def carregar_rag():
         chunk_overlap=50
     )
     chunks = splitter.split_documents(documentos)
+
+    google_api_key = get_google_api_key()
+    if not google_api_key:
+        raise RuntimeError("Configure GOOGLE_API_KEY no .env ou preencha API_KEY no app.py.")
 
     embeddings = GoogleGenerativeAIEmbeddings(
         google_api_key=GOOGLE_API_KEY,
@@ -387,7 +399,7 @@ for message in st.session_state.messages:
 try:
     qa = carregar_rag()
 except Exception as e:
-    st.error("Erro ao carregar o chatbot. Verifique se a pasta `docs/` existe com arquivos `.txt` e se a chave da API está configurada no `.env`.")
+    st.error("Erro ao carregar o chatbot. Verifique se a pasta `documents/` existe com arquivos `.txt` e se a chave da API está configurada no `.env` ou em `API_KEY`.")
     st.code(str(e))
     st.stop()
 
