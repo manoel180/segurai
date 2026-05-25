@@ -3,15 +3,27 @@ from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain_chroma import Chroma
-from langchain.chains import ConversationalRetrievalChain
-from langchain.memory import ConversationBufferMemory
-from langchain.prompts import PromptTemplate
+from langchain_classic.chains import ConversationalRetrievalChain
+from langchain_classic.memory import ConversationBufferMemory
+from langchain_core.prompts import PromptTemplate
 import os
 import csv
 from datetime import datetime
 
-# SUA CHAVE FUNCIONAL AQUI (a que deu 3072)
-API_KEY = "COLE SUA CHAVE AQUI"
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("API_KEY")
+
+try:
+    from streamlit.runtime.scriptrunner_utils.script_run_context import get_script_run_ctx
+except ImportError:
+    def get_script_run_ctx():
+        return None
+
+if get_script_run_ctx(suppress_warning=True) is None:
+    raise SystemExit("Execute este app com: streamlit run app.py")
 
 st.set_page_config(page_title="SegurAI Assistente", page_icon="🛡️", layout="centered")
 
@@ -252,6 +264,9 @@ QA_PROMPT = PromptTemplate(
 # --- CARREGAMENTO DO RAG ---
 @st.cache_resource
 def carregar_rag():
+    if not GOOGLE_API_KEY:
+        raise RuntimeError("Defina GOOGLE_API_KEY, GEMINI_API_KEY ou API_KEY no .env antes de iniciar o app.")
+
     loader = DirectoryLoader(
         "docs",
         glob="*.txt",
@@ -267,7 +282,7 @@ def carregar_rag():
     chunks = splitter.split_documents(documentos)
 
     embeddings = GoogleGenerativeAIEmbeddings(
-        google_api_key=os.getenv("GOOGLE_API_KEY"),
+        google_api_key=GOOGLE_API_KEY,
         model="models/gemini-embedding-001",
         task_type="RETRIEVAL_DOCUMENT"
     )
@@ -290,7 +305,7 @@ def carregar_rag():
     retriever = db.as_retriever(search_kwargs={"k": 3})
 
     llm = ChatGoogleGenerativeAI(
-        google_api_key=os.getenv("GOOGLE_API_KEY"),
+        google_api_key=GOOGLE_API_KEY,
         model="gemini-2.0-flash",
         temperature=0.2
     )
