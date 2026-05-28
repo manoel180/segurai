@@ -1,7 +1,14 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import docsData from "@/data/documents.json";
 
-const client = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
+function getApiKey(): string {
+  return (
+    process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY || process.env.API_KEY || ""
+  );
+}
+
+const apiKey = getApiKey();
+const client = new GoogleGenerativeAI(apiKey);
 
 function getDocuments(): string[] {
   return docsData.map((d: { content: string }) => d.content);
@@ -17,6 +24,11 @@ export async function queryRAG(question: string) {
 
   if (documents.length === 0) {
     throw new Error("Nenhum documento encontrado na base de dados");
+  }
+
+  if (!apiKey) {
+    console.error("Chave de API do Google não encontrada. Defina GOOGLE_API_KEY, GEMINI_API_KEY ou API_KEY no ambiente.");
+    throw new Error("Chave de API do Google não encontrada. Defina GOOGLE_API_KEY, GEMINI_API_KEY ou API_KEY no ambiente.");
   }
 
   const model = client.getGenerativeModel({ model: "gemini-2.5-flash" });

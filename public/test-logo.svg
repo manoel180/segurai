@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="200" viewBox="0 0 600 200" role="img" aria-label="SegurAI Test Logo">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0b4f9c" />
+      <stop offset="100%" stop-color="#06b58a" />
+    </linearGradient>
+    <style>
+      .t { font-family: Inter, Arial, sans-serif; font-weight:700; }
+    </style>
+  </defs>
+  <rect width="600" height="200" rx="16" fill="#ffffff"/>
+  <g transform="translate(40,24)">
+    <!-- shield -->
+    <path d="M60 0 L110 20 L130 70 L95 120 L25 120 L-10 70 L10 20 Z" transform="scale(1.1) translate(20,0)" fill="url(#g)" opacity="0.95"/>
+    <!-- robot face (simple) -->
+    <rect x="52" y="28" width="36" height="32" rx="6" fill="#fff" opacity="0.9"/>
+    <circle cx="68" cy="44" r="4" fill="#0b4f9c"/>
+    <circle cx="84" cy="44" r="4" fill="#0b4f9c"/>
+    <rect x="64" y="56" width="16" height="4" rx="2" fill="#0b4f9c"/>
+  </g>
+  <g transform="translate(200,100)">
+    <text x="0" y="-6" font-size="46" class="t" fill="#072b52">Segur</text>
+    <text x="150" y="-6" font-size="46" class="t" fill="#06b58a">AI</text>
+    <text x="0" y="36" font-size="14" fill="#6b7280">Assistente Inteligente de Seguros</text>
+  </g>
+</svg>

@@ -85,7 +85,8 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
 
-html, body, [class*="css"] {
+/* Limit styling to Streamlit app container to avoid affecting internal components */
+.stApp, .block-container, main {
     font-family: 'Lato', sans-serif;
     background-color: #FAFAFA;
     color: #1A202C;

@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
+import LogoWebp from '../assets/segurai-logo.webp';
+import LogoPng from '../assets/segurai-logo.png';
 
 interface Message {
   id: string;
@@ -85,11 +88,7 @@ export default function Home() {
       <header className="bg-surface/90 backdrop-blur-md sticky top-0 z-50 border-b border-outline shadow-sm">
         <div className="flex justify-between items-center w-full px-sm md:px-lg py-sm max-w-container-max mx-auto">
           <div className="flex items-center gap-sm">
-            <img
-              alt="SegurAI Logo"
-              className="h-12 w-auto"
-              src="https://lh3.googleusercontent.com/aida/ADBb0uil7Z6ZPJKGcZq5oJIZzE0ezKhpFwm-5-nFlkcH9oPztTqIuOINAlHTM1jfY8elvtwIYcDznfHiwXf9ycx9HaMiY4Lj7sMw8ILHdo3z-MwalimcCx80mkotSXJueeaq4ndTs4byAVj9c_42_UYgsjDGqnzNXs8EHDO6P7usr8GS3_2LJtXUX6CDTXUiUiJboNpBIhGsdG0iL2H0b0iOffGPqoznyr6ZQQYTPIL0a17X4sjcQksmblbnlU3RdBwjfuPPs47pmH_Ecw"
-            />
+            <Image alt="SegurAI Logo" src={LogoWebp} placeholder="empty" height={48} width={180} priority />
           </div>
           <nav className="hidden md:flex items-center gap-lg">
             <a
@@ -419,11 +418,7 @@ export default function Home() {
       <footer className="bg-primary full-width border-t-4 border-secondary">
         <div className="flex flex-col justify-center items-center w-full px-sm md:px-lg py-xl max-w-container-max mx-auto gap-lg">
           <div className="flex items-center justify-center">
-            <img
-              alt="SegurAI Logo Branco"
-              className="h-16 w-auto brightness-0 invert opacity-90"
-              src="https://lh3.googleusercontent.com/aida/ADBb0uil7Z6ZPJKGcZq5oJIZzE0ezKhpFwm-5-nFlkcH9oPztTqIuOINAlHTM1jfY8elvtwIYcDznfHiwXf9ycx9HaMiY4Lj7sMw8ILHdo3z-MwalimcCx80mkotSXJueeaq4ndTs4byAVj9c_42_UYgsjDGqnzNXs8EHDO6P7usr8GS3_2LJtXUX6CDTXUiUiJboNpBIhGsdG0iL2H0b0iOffGPqoznyr6ZQQYTPIL0a17X4sjcQksmblbnlU3RdBwjfuPPs47pmH_Ecw"
-            />
+            <Image alt="SegurAI Logo Branco" src={LogoWebp} placeholder="empty" height={64} width={240} priority />
           </div>
           <div className="flex flex-wrap gap-md justify-center font-button-text text-button-text">
             <a className="text-on-primary/70 hover:text-on-primary transition-colors tracking-widest text-[11px]" href="#">
@@ -441,7 +436,7 @@ export default function Home() {
           </div>
           <div className="w-24 h-px bg-on-primary/20 my-sm"></div>
           <p className="font-body-small text-[12px] text-on-primary/50 text-center uppercase tracking-widest">
-            © 2024 SegurAI. Tecnologia de precisão em seguros.
+            © 2026 SegurAI. Tecnologia de precisão em seguros.
           </p>
         </div>
       </footer>
