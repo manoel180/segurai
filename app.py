@@ -9,12 +9,14 @@ from langchain_core.prompts import PromptTemplate
 import os
 import csv
 from datetime import datetime
+from importlib import import_module
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("API_KEY")
+MODEL_NAME = "gemini-2.5-flash"
 
 try:
     from streamlit.runtime.scriptrunner_utils.script_run_context import get_script_run_ctx
@@ -318,7 +320,7 @@ def carregar_rag():
 
     llm = ChatGoogleGenerativeAI(
         google_api_key=GOOGLE_API_KEY,
-        model="gemini-2.0-flash",
+        model=MODEL_NAME,
         temperature=0.2
     )
 
@@ -343,6 +345,18 @@ def logar_interacao(pergunta: str, resposta: str):
     with open("logs/interacoes.csv", "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow([datetime.now().isoformat(), pergunta, resposta[:200]])
+
+
+def erro_limite_api(error: Exception) -> bool:
+    try:
+        resource_exhausted = import_module("google.api_core.exceptions").ResourceExhausted
+        if isinstance(error, resource_exhausted):
+            return True
+    except Exception:
+        pass
+
+    mensagem = str(error).lower()
+    return "resource_exhausted" in mensagem or "429" in mensagem or "quota" in mensagem
 
 # --- INTERFACE ---
 st.markdown('<div class="header-bar"></div>', unsafe_allow_html=True)
@@ -381,7 +395,7 @@ with st.sidebar:
         st.rerun()
     st.markdown("""
 <div style="margin-top: 2rem; font-size: 0.7rem; opacity: 0.5; letter-spacing: 0.08em; text-transform: uppercase;">
-    © 2024 SegurAI<br>Tecnologia de precisão em seguros.
+    © 2026 SegurAI<br>Tecnologia de precisão em seguros.
 </div>
 """, unsafe_allow_html=True)
 
@@ -410,7 +424,25 @@ if prompt := st.chat_input("Digite sua dúvida sobre seguro..."):
 
     with st.chat_message("assistant"):
         with st.spinner("Consultando a base de conhecimento..."):
-            resultado = qa.invoke({"question": prompt})
+            try:
+                resultado = qa.invoke({"question": prompt})
+            except Exception as error:
+                if erro_limite_api(error):
+                    resposta = (
+                        "No momento, o serviço de IA atingiu o limite de uso da API. "
+                        "Tente novamente em alguns minutos ou use o atendimento humano para uma resposta imediata."
+                    )
+                    fontes = []
+                    st.warning(resposta)
+                    st.session_state.messages.append({
+                        "role": "assistant",
+                        "content": resposta,
+                        "sources": fontes
+                    })
+                    logar_interacao(prompt, resposta)
+                    st.stop()
+
+                raise
 
         resposta = resultado["answer"]
         fontes = list({
