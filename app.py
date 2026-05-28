@@ -1,15 +1,21 @@
 import streamlit as st
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_chroma import Chroma
 from langchain_classic.chains import ConversationalRetrievalChain
 from langchain_classic.memory import ConversationBufferMemory
+from langchain_core.embeddings import Embeddings
 from langchain_core.prompts import PromptTemplate
 import os
 import csv
 from datetime import datetime
 from importlib import import_module
+from pathlib import Path
+import re
+
+import mmh3
+import numpy as np
 
 from dotenv import load_dotenv
 
@@ -17,6 +23,44 @@ load_dotenv()
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("API_KEY")
 MODEL_NAME = "gemini-2.5-flash"
+DOCUMENTS_DIR = Path("docs")
+CHROMA_DIR = Path("chroma_db_local")
+EMBEDDING_DIMENSIONS = 1024
+
+
+def get_google_api_key() -> str:
+    return GOOGLE_API_KEY or ""
+
+
+class LocalHashEmbeddings(Embeddings):
+    def __init__(self, dimensions: int = EMBEDDING_DIMENSIONS):
+        self.dimensions = dimensions
+
+    def _tokenize(self, text: str) -> list[str]:
+        return re.findall(r"[\wÀ-ÿ]+", text.lower())
+
+    def _embed(self, text: str) -> list[float]:
+        vector = np.zeros(self.dimensions, dtype=np.float32)
+        tokens = self._tokenize(text)
+
+        if not tokens:
+            return vector.tolist()
+
+        for token in tokens:
+            bucket = mmh3.hash(token, signed=False) % self.dimensions
+            vector[bucket] += 1.0
+
+        norm = float(np.linalg.norm(vector))
+        if norm > 0:
+            vector /= norm
+
+        return vector.tolist()
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        return [self._embed(text) for text in texts]
+
+    def embed_query(self, text: str) -> list[float]:
+        return self._embed(text)
 
 try:
     from streamlit.runtime.scriptrunner_utils.script_run_context import get_script_run_ctx
@@ -258,18 +302,10 @@ Pergunta do segurado: {question}
 
 Resposta:"""
 
-guard_prompttemplate = globals().get("PromptTemplate", None)
-problems = missing_modules.copy()
-if not callable(guard_prompttemplate):
-    problems.append("PromptTemplate is unavailable or incompatible in the installed `langchain` package.")
-
-if callable(guard_prompttemplate):
-    QA_PROMPT = PromptTemplate(
-        input_variables=["context", "chat_history", "question"],
-        template=SYSTEM_PROMPT
-    )
-else:
-    QA_PROMPT = None
+QA_PROMPT = PromptTemplate(
+    input_variables=["context", "chat_history", "question"],
+    template=SYSTEM_PROMPT
+)
 
 # --- CARREGAMENTO DO RAG ---
 @st.cache_resource
@@ -291,30 +327,28 @@ def carregar_rag():
     )
     chunks = splitter.split_documents(documentos)
 
-    google_api_key = get_google_api_key()
-    if not google_api_key:
-        raise RuntimeError("Configure GOOGLE_API_KEY no .env ou preencha API_KEY no app.py.")
+    embeddings = LocalHashEmbeddings()
 
-    embeddings = GoogleGenerativeAIEmbeddings(
-        google_api_key=GOOGLE_API_KEY,
-        model="models/gemini-embedding-001",
-        task_type="RETRIEVAL_DOCUMENT"
-    )
-    
-    teste = embeddings.embed_query("Seguro auto com cobertura de colisão")
-    
-    st.write("Embedding gerado com sucesso:", len(teste))
-    st.write(f"Qtd. documentos carregados: {len(documentos)}")
-    st.write(f"Qtd. chunks gerados: {len(chunks)}")
-    st.write("Primeiro chunk:", chunks[0].page_content[:300] if chunks else "Nenhum chunk")
-    
-    teste_chunks = chunks[:10]
+    chroma_dir = CHROMA_DIR
+    chroma_db_file = chroma_dir / "chroma.sqlite3"
 
-    db = Chroma.from_documents(
-        documents=chunks,
-        embedding=embeddings,
-        persist_directory="chroma_db"
-    )
+    if chroma_db_file.exists():
+        db = Chroma(
+            persist_directory=str(chroma_dir),
+            embedding_function=embeddings,
+        )
+    else:
+        try:
+            db = Chroma.from_documents(
+                documents=chunks,
+                embedding=embeddings,
+                persist_directory=str(chroma_dir)
+            )
+        except Exception as error:
+            raise RuntimeError(
+                "Não foi possível gerar o índice vetorial local a partir dos documentos. "
+                "Verifique se a pasta docs/ está legível e tente novamente."
+            ) from error
 
     retriever = db.as_retriever(search_kwargs={"k": 3})
 
