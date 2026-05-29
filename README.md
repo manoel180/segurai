@@ -21,7 +21,7 @@
 | Nome | E-mail | Celular | Papel |
 |------|--------|---------|-------|
 | Ednardo Pinheiro Peixoto *(Representante)* | ed.peixoto99@gmail.com | (85) 98536-2741 | Líder Técnico / IA / Dev |
-| Lilian Retori | lilianretori@yahoo.com.br | (35) 98842-0622 | Negócios / Seguros | Cientista de dados |
+| Lilian Retori | lilianretori@yahoo.com.br | (35) 98842-0622 | Negócios / Seguros / Cientista de dados |
 | Manoel da Silva Neto | manoel180@hotmail.com | (92) 99214-1819 | Arquitetura / Dev / Frontend | 
 | Rafael Torres Lattaro Soares | lattaro.contato@gmail.com | (61) 99963-5599 | Especialista em Seguros |
 | Rolf M. Paninka | romapa@gmail.com | (11) 99819-6693 | Corretor de Imóveis e Consórcio |
