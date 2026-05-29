@@ -418,7 +418,7 @@ export default function Home() {
       <footer className="bg-primary full-width border-t-4 border-secondary">
         <div className="flex flex-col justify-center items-center w-full px-sm md:px-lg py-xl max-w-container-max mx-auto gap-lg">
           <div className="flex items-center justify-center">
-            <Image alt="SegurAI Logo Branco" src={LogoWebp} placeholder="empty" height={64} width={240} priority />
+            <Image alt="/segurai-logo.webp" src={LogoWebp} placeholder="empty" height={64} width={240} priority />
           </div>
           <div className="flex flex-wrap gap-md justify-center font-button-text text-button-text">
             <a className="text-on-primary/70 hover:text-on-primary transition-colors tracking-widest text-[11px]" href="#">
